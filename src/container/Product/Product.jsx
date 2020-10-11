@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import CardProduct from '../CardProduct/CardProduct';
 
 class Product extends Component {
@@ -16,7 +17,8 @@ class Product extends Component {
         return(
             <Fragment>
                 <div className="header">
-                    <div className="count">{this.state.order}</div>
+                    <div className="count">Order Lokal  : {this.state.order}</div>
+                    <div className="count">Order Global : {this.props.order}</div>
                 </div>
 
                 <CardProduct 
@@ -28,5 +30,9 @@ class Product extends Component {
         )
     }
 }
-
-export default Product
+const mapStateToProps = (state) => {
+    return {
+        order: state.totalOrder
+    }
+}
+export default connect(mapStateToProps)(Product)
