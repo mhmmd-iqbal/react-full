@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import YoutubeComponent from '../../component/YoutubeComponent/YoutubeComponent';
 
 class Youtube extends Component{
@@ -6,6 +7,8 @@ class Youtube extends Component{
         return (
             <Fragment>
                 <p>Halaman</p>
+
+                <h5>Total Order : {this.props.order} </h5>
                 <hr/>
                 <YoutubeComponent title = "Judul 1"/>
                 <YoutubeComponent title = "Judul 2"/>
@@ -16,4 +19,10 @@ class Youtube extends Component{
     }
 }
 
-export default Youtube
+const mapStateToProps = (state) => {
+    return {
+        order : state.totalOrder
+    }
+}
+
+export default connect(mapStateToProps)(Youtube)
